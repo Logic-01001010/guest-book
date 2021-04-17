@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>homepage</title>
+
+
+	<link rel="shortcut icon" href="/static/files/favicon.ico">
+
+
+
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, 
+  maximum-scale=1.0, minimum-scale=1.0">
+	
+
+
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+
+
+	<style type="text/css">
+		
+		body{  }
+
+		table{border: 1px solid black; margin-left: auto; margin-right: auto;}
+
+
+		.banner{width: 50%; height: 50%;}
+
+		.main{text-align: center;}
+
+
+		.ip{color: black;}
+
+		.img{border:1px solid black; ;width: 100px; height: 100px;}
+		
+		.comment{color: black;}
+
+
+
+
+	</style>
+
+
+</head>
+<body>
+
+
+
+
+	<div class="main">
+
+
+		
+
+		<iframe width="100%" height="245" src="https://forecast.io/embed/#lat=37.5662&lon=126.9785&name=서울&color=#4FC9DE&font=arial&units=si"></iframe>
+
+
+		<hr>
+
+
+		<div class="guest_book">
+
+
+
+			<div class="edit">
+				
+
+
+
+
+
+				<div class="row">
+				  <div class="col-md-4"> </div>
+				  <div class="col-md-4">
+				  	
+					<form method="POST" action="/edit" enctype = "multipart/form-data">
+						
+						<input type="file" name="img" accept="image/*">
+
+						<br>
+
+
+						<div class="input-group">
+							  <span class="input-group-addon" id="basic-addon1">comment</span>
+							  <input maxlength='128' type="text" class="form-control" placeholder="comment" aria-describedby="basic-addon1" name="comment">
+							
+
+							<span class="input-group-btn">
+					        	<button class="btn btn-default" type="submit">submit <span class="glyphicon glyphicon-pencil"></span></button>
+					      	</span>
+
+				      	</div>
+
+
+					</form>
+
+
+				  </div>
+				  <div class="col-md-4"> </div>
+				</div>
+
+
+
+
+
+			<br>
+
+
+			<table class="table table-striped">
+
+					<tr>
+						
+						<td>
+							<span class="glyphicon glyphicon-flag"></span> IP
+						</td>
+
+						<td>
+							<span class="glyphicon glyphicon-picture"></span> IMG
+						</td>
+
+						<td>
+							<span class="glyphicon glyphicon-comment"></span> COMMENT
+						</td>
+
+						<td>
+							<span class="glyphicon glyphicon-time"></span> TIME
+						</td>
+
+					</tr>
+
+
+						{% for row in result %}
+
+
+					<tr>
+						
+						<td>
+							<p class="ip">{{ row[0] }} </p>
+						</td>
+
+
+						<td>
+							<img class="img" src="static/{{ row[1] }}">
+						</td>
+
+
+						<td>
+							<p class="comment">{{ row[2] }}</p>
+						</td>
+
+
+						<td>
+							<p class="time">{{ row[3] }}</p>
+						</td>
+
+
+
+					</tr>
+
+
+						{% endfor %}
+
+
+			</table>
+
+			</div>
+
+
+		</div>
+
+	</div>
+
+
+
+
+
+</body>
+</html>
